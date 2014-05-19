@@ -271,6 +271,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   erb2haml
   everlog
+  evernote_oauth
   haml
   haml-rails
   jbuilder (~> 1.2)
