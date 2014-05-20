@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         create_github result
     end
 
-    redirect_to controller: 'users', action: 'index'
+    redirect_to controller: 'users', action: 'edit', id: session[:uid]
   end
 
   def create_evernote result
@@ -28,22 +28,22 @@ class SessionsController < ApplicationController
 
   def create_twitter result
     credentials = result[:credentials]
-    if Ltwitter.find_by_evernote_uid(session[:uid]).blank?
-      Ltwitter.create(evernote_uid: session[:uid], access_token: credentials[:token], access_secret: credentials[:secret])
+    if LifelogTwitter.find_by_evernote_uid(session[:uid]).blank?
+      LifelogTwitter.create(evernote_uid: session[:uid], access_token: credentials[:token], access_secret: credentials[:secret])
     end
   end
 
   def create_hatena result
     credentials = result[:credentials]
-    if Lhatena.find_by_evernote_uid(session[:uid]).blank?
-      Lhatena.create(evernote_uid: session[:uid], access_token: credentials[:token], access_secret: credentials[:secret])
+    if LifelogHatena.find_by_evernote_uid(session[:uid]).blank?
+      LifelogHatena.create(evernote_uid: session[:uid], access_token: credentials[:token], access_secret: credentials[:secret])
     end
   end
 
   def create_github result
     credentials = result[:credentials]
-    if Github.find_by_evernote_uid(session[:uid]).blank?
-      Github.create(evernote_uid: session[:uid], access_secret: credentials[:token])
+    if LifelogGithub.find_by_evernote_uid(session[:uid]).blank?
+      LifelogGithub.create(evernote_uid: session[:uid], access_secret: credentials[:token])
     end
   end
 

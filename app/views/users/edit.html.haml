@@ -1,7 +1,19 @@
-%h1 Editing user
+%h1 Users#setting
+- if @twitter.blank?
+  = link_to 'Twitter認証', '/auth/twitter'
+- else
+  %p twitter認証済み
 
-= render 'form'
+- if @hatena.blank?
+  = link_to 'HatenaBookmark認証', '/auth/hatena'
+- else
+  %p HatenaBookmark認証済み
 
-= link_to 'Show', @user
-\|
-= link_to 'Back', users_path
+- if @github.blank?
+  = link_to 'Github認証', '/auth/github'
+- else
+  %p Github認証済み
+
+-#= button_to('お試し送信', { controller: 'workers', action: 'create' }, method: :post)
+
+-#= button_to('登録して毎日届かせる', { controller: 'users', action: 'update', key: :status, val: 2 }, method: :put)
