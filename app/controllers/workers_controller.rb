@@ -2,7 +2,7 @@ class WorkersController < ApplicationController
   before_filter :check_session
 
   def create
-    params[:id]
+    Worker.new({evernote_uid: params[:id]}).create
   end
 
   private

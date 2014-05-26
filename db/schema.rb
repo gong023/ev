@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140517130509) do
+ActiveRecord::Schema.define(version: 20140526155156) do
 
   create_table "lifelog_animeticks", force: true do |t|
     t.integer  "evernote_uid",              null: false
@@ -92,5 +92,11 @@ ActiveRecord::Schema.define(version: 20140517130509) do
 
   add_index "users", ["evernote_uid", "status"], name: "index_users_on_evernote_uid_and_status", using: :btree
   add_index "users", ["evernote_uid"], name: "index_users_on_evernote_uid", unique: true, using: :btree
+
+  create_table "workers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "evernote_uid", null: false
+  end
 
 end
