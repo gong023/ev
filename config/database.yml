@@ -35,5 +35,5 @@ production:
   database: lifelog_production
   pool: 5
   username: root
-  password:
-  host: localhost
+  password: umierisaiko
+  host: gong023.com
