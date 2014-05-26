@@ -5,5 +5,5 @@ Lifelog::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create', as: 'callback'
 
   resources :users, only: [:edit, :update]
-  post '/workers/' => 'workers#create'
+  post '/workers/:id' => 'workers#create'
 end

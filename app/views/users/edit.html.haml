@@ -14,6 +14,6 @@
 - else
   %p Github認証済み
 
--#= button_to('お試し送信', { controller: 'workers', action: 'create' }, method: :post)
+= button_to('お試し送信', { controller: 'workers', action: 'create', id: session[:uid] })
 
 -#= button_to('登録して毎日届かせる', { controller: 'users', action: 'update', key: :status, val: 2 }, method: :put)
