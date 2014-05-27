@@ -3,6 +3,7 @@ class WorkersController < ApplicationController
 
   def create
     Worker.new({evernote_uid: params[:id]}).create
+    EventWorker.perform_async
   end
 
   private
