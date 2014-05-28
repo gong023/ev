@@ -1,5 +1,4 @@
 require 'sidekiq/web'
-require 'admin_constraint'
 
 Lifelog::Application.routes.draw do
   root to: 'welcome#index'
