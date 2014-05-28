@@ -1,7 +1,7 @@
 require 'sidekiq'
 
 Sidekiq.configure_client do |config|
-  config.redis = { :size => 1 }
+  config.redis = { url: 'redis://gong023.com:6379', namespace: "sidekiq_development", size: 1 }
 end
 
 require 'sidekiq/web'
