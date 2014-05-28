@@ -1,3 +1,6 @@
+require 'sidekiq/web'
+require 'admin_constraint'
+
 Lifelog::Application.routes.draw do
   root to: 'welcome#index'
 
@@ -6,4 +9,10 @@ Lifelog::Application.routes.draw do
 
   resources :users, only: [:edit, :update]
   post '/workers/:id' => 'workers#create'
+
+  # 別にこのサーバー上でやらなくてもいいんだ
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == 'lifelogsidekiq' && password == 'bakasinegenkika'
+  end
+  mount Sidekiq::Web => '/admin/queue'
 end
