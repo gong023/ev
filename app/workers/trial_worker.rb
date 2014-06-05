@@ -1,8 +1,8 @@
 require 'everlog'
 
-class EventWorker
+class TrialWorker
   include Sidekiq::Worker
-  sidekiq_options queue: :event, retry: false
+  sidekiq_options queue: :trial, retry: false
 
   def perform uid
     evernote = LifelogEvernote.find_by_uid uid
@@ -10,7 +10,11 @@ class EventWorker
     hatena   = LifelogHatena.find_by_evernote_uid uid
     github   = LifelogGithub.find_by_evernote_uid uid
 
-    everlog = Everlog.new
+    everlog = Everlog::Daily.new
+    everlog.push(:weather, {
+      access_token: '41c6ad6bd5824c51'
+    })
+
     unless twitter.blank?
       everlog.push(:twitter, {
         consumer_key:    'FSNYrrAMMPScdfzOo5Ge5g',
