@@ -46,7 +46,7 @@ GEM
     erb2haml (0.1.5)
       html2haml
     erubis (2.7.0)
-    everlog (0.0.2)
+    everlog (0.0.3)
       evernote_oauth
       geocoder
       hatena-bookmark
