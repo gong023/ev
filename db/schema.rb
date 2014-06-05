@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526155156) do
+ActiveRecord::Schema.define(version: 20140605145438) do
 
   create_table "lifelog_animeticks", force: true do |t|
     t.integer  "evernote_uid",              null: false
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 20140526155156) do
 
   add_index "lifelog_hatenas", ["evernote_uid", "status"], name: "index_lifelog_hatenas_on_evernote_uid_and_status", using: :btree
   add_index "lifelog_hatenas", ["evernote_uid"], name: "index_lifelog_hatenas_on_evernote_uid", unique: true, using: :btree
+
+  create_table "lifelog_loggers", force: true do |t|
+    t.integer  "evernote_uid"
+    t.text     "text"
+    t.string   "occured"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lifelog_loggers", ["evernote_uid"], name: "index_lifelog_loggers_on_evernote_uid", using: :btree
+  add_index "lifelog_loggers", ["occured"], name: "index_lifelog_loggers_on_occured", using: :btree
 
   create_table "lifelog_moves", force: true do |t|
     t.integer  "evernote_uid",              null: false
