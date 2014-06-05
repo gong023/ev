@@ -2,8 +2,8 @@ class WorkersController < ApplicationController
   before_filter :check_session
 
   def create
-    Worker.new({evernote_uid: params[:id]}).create
-    EventWorker.perform_async
+    EventWorker.perform_async(params[:id])
+    Worker.create({ evernote_uid: params[:id] })
   end
 
   private
