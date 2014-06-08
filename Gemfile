@@ -39,7 +39,7 @@ gem 'sinatra'
 
 gem 'unicorn'
 
-gem 'everlog'
+gem 'everlog', '~> 0.0.4'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -48,3 +48,5 @@ group :development, :test do
 end
 
 gem 'evernote_oauth'
+
+gem 'agent_orange'

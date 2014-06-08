@@ -26,6 +26,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
+    agent_orange (0.1.6)
     arel (4.0.2)
     buftok (0.2.0)
     builder (3.1.4)
@@ -46,7 +47,7 @@ GEM
     erb2haml (0.1.5)
       html2haml
     erubis (2.7.0)
-    everlog (0.0.3)
+    everlog (0.0.4)
       evernote_oauth
       geocoder
       hatena-bookmark
@@ -268,9 +269,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  agent_orange
   coffee-rails (~> 4.0.0)
   erb2haml
-  everlog
+  everlog (~> 0.0.4)
   evernote_oauth
   haml
   haml-rails
