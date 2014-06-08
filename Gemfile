@@ -39,7 +39,7 @@ gem 'sinatra'
 
 gem 'unicorn'
 
-gem 'everlog', '~> 0.0.4'
+gem 'everlog', '~> 0.0.5'
 
 group :development, :test do
   gem 'rspec-rails'

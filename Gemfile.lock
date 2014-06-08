@@ -47,7 +47,7 @@ GEM
     erb2haml (0.1.5)
       html2haml
     erubis (2.7.0)
-    everlog (0.0.4)
+    everlog (0.0.5)
       evernote_oauth
       geocoder
       hatena-bookmark
@@ -272,7 +272,7 @@ DEPENDENCIES
   agent_orange
   coffee-rails (~> 4.0.0)
   erb2haml
-  everlog (~> 0.0.4)
+  everlog (~> 0.0.5)
   evernote_oauth
   haml
   haml-rails
