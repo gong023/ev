@@ -53,7 +53,7 @@ class TrialWorker
     end
 
     begin
-      everlog.publish('testtesttest', evernote.access_secret)
+      everlog.publish('testtesttest', evernote.access_secret, 'sandbox')
     rescue Everlog::InfrastructureEvernoteError => e
         LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'evernote api error'})
     end
