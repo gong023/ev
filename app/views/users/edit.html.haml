@@ -14,6 +14,14 @@
 - else
   %p Github認証済み
 
+- if @moves.blank?
+  - if @ua.is_mobile?
+    = link_to 'Github認証', '/auth/github'
+  - else
+    %p movesの認証はスマートフォンからお願いします
+- else
+  %p moves認証済み
+
 = button_to('お試し送信', { controller: 'workers', action: 'create', id: session[:uid] })
 
 -#= button_to('登録して毎日届かせる', { controller: 'users', action: 'update', key: :status, val: 2 }, method: :put)

@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     case(params[:key])
       when 'status'
@@ -24,8 +23,10 @@ class UsersController < ApplicationController
   end
 
   def set_service uid
+    @ua = AgentOrange::UserAgent.new(request.env["HTTP_USER_AGENT"])
     @twitter = LifelogTwitter.find_by_evernote_uid(uid)
     @hatena  = LifelogHatena.find_by_evernote_uid(uid)
     @github  = LifelogGithub.find_by_evernote_uid(uid)
+    @moves   = LifelogMoves.find_by_evernote_uid(uid)
   end
 end

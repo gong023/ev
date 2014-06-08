@@ -19,8 +19,8 @@ class TrialWorker
     unless twitter.blank?
       begin
         everlog.push(:twitter, {
-          consumer_key:    'FSNYrrAMMPScdfzOo5Ge5g',
-          consumer_secret: 'VRsbctmYjMVCJTX4HDPPZxNUlWXuIC6fOCeE5VjySbs',
+          consumer_key:    'HOsdFThXCsI7EjVC6gRzgWDgd',
+          consumer_secret: 'fLOy5pLsIIzE40A7lS59N0fM7L7laJtmSXiJYW2ky4MN1AoJlE',
           access_token:    twitter.access_token,
           access_secret:   twitter.access_secret
         })
@@ -33,8 +33,8 @@ class TrialWorker
     unless hatena.blank?
       begin
         everlog.push(:hatena, {
-          consumer_key:    '+44PD+AIVzFE7A==',
-          consumer_secret: '1BJTt8WoOa64yy9eyC7ANkX45gI',
+          consumer_key:    '0/xho8PM2xdqdg==',
+          consumer_secret: 'AnK35xT6qTdue1S3sEVrVRgfQ9w=',
           access_token:    hatena.access_token,
           access_secret:   hatena.access_secret
         })
@@ -74,9 +74,31 @@ class TrialWorker
     end
 
     begin
-      everlog.publish('testtesttest', evernote.access_secret, 'sandbox')
+      everlog.publish(title, evernote.access_secret, 'production')
     rescue Everlog::InfrastructureEvernoteError => e
         LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'evernote api error'})
     end
+  end
+
+  def title
+    d = (Date.today - 1)
+    case d.wday
+    when 0
+      wday = 'Sun'
+    when 1
+      wday = 'Mon'
+    when 2
+      wday = 'Tue'
+    when 3
+      wday = 'Wed'
+    when 4
+      wday = 'Thu'
+    when 5
+      wday = 'Fri'
+    when 6
+      wday = 'Sat'
+    end
+
+    "Lifelog #{d.to_s.gsub(/-/, '/')}(#{wday})"
   end
 end
