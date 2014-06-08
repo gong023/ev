@@ -5,10 +5,7 @@ class TrialWorker
   sidekiq_options queue: :trial, retry: false
 
   def perform uid
-    evernote = LifelogEvernote.find_by_uid uid
-    twitter  = LifelogTwitter.find_by_evernote_uid uid
-    hatena   = LifelogHatena.find_by_evernote_uid uid
-    github   = LifelogGithub.find_by_evernote_uid uid
+    evernote  = LifelogEvernote.find_by_uid uid
 
     everlog = Everlog::Daily.new
 
@@ -18,6 +15,7 @@ class TrialWorker
         LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'weather api error'})
     end
 
+    twitter = LifelogTwitter.find_by_evernote_uid uid
     unless twitter.blank?
       begin
         everlog.push(:twitter, {
@@ -31,6 +29,7 @@ class TrialWorker
       end
     end
 
+    hatena = LifelogHatena.find_by_evernote_uid uid
     unless hatena.blank?
       begin
         everlog.push(:hatena, {
@@ -44,11 +43,33 @@ class TrialWorker
       end
     end
 
+    github = LifelogGithub.find_by_evernote_uid uid
     unless github.blank?
       begin
         everlog.push(:github, {access_secret: github.access_secret})
       rescue Everlog::InfrastructureGithubError => e
         LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'github api error'})
+      end
+    end
+
+    animetick = LifelogAnimetick.find_by_evernote_uid uid
+    unless animetick.blank?
+      begin
+        everlog.push(:animetick, {
+          access_token: animetick.access_token,
+          access_secret: animetick.access_secret
+        })
+      rescue Everlog::InfrastructureEvernoteError => e
+        LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'animetick error'})
+      end
+    end
+
+    moves = LifelogMoves.find_by_evernote_uid uid
+    unless moves.blank?
+      begin
+        everlog.push(:moves, {access_secret: moves.access_secret})
+      rescue Everlog::InfrastructureMovesError => e
+        LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'moves api error'})
       end
     end
 
