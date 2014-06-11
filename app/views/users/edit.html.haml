@@ -24,4 +24,11 @@
 
 = button_to('お試し送信', { controller: 'workers', action: 'create', id: session[:uid] })
 
--#= button_to('登録して毎日届かせる', { controller: 'users', action: 'update', key: :status, val: 2 }, method: :put)
+- if @user.status == 1
+  = form_tag({ controller: 'users', action: 'update' }, method: 'put')
+  = hidden_field_tag(:status, 2)
+  = submit_tag('登録して毎日届かせる')
+- else
+  = form_tag({ controller: 'users', action: 'update' }, method: 'put')
+  = hidden_field_tag(:status, 1)
+  = submit_tag('登録解除する')

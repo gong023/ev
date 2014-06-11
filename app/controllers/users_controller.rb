@@ -8,12 +8,10 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    case(params[:key])
-      when 'status'
-        User.find_by_evernote_uid(session[:uid]).update_attributes(status: params[:val])
-    end
-
     set_service params[:id]
+
+    @user.update_attributes(status: params[:status])
+
     render action: :edit
   end
 
@@ -28,5 +26,6 @@ class UsersController < ApplicationController
     @hatena  = LifelogHatena.find_by_evernote_uid(uid)
     @github  = LifelogGithub.find_by_evernote_uid(uid)
     @moves   = LifelogMoves.find_by_evernote_uid(uid)
+    @user    = User.find_by_evernote_uid(uid)
   end
 end
