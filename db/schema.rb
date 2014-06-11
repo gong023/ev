@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605145438) do
+ActiveRecord::Schema.define(version: 20140611144334) do
 
   create_table "lifelog_animeticks", force: true do |t|
     t.integer  "evernote_uid",              null: false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20140605145438) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "evernote_uid", null: false
+    t.string   "from"
   end
 
 end
