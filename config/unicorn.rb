@@ -20,7 +20,7 @@ after_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
 
   # When in Unicorn, this block needs to go in unicorn's `after_fork` callback:
-  Sidekiq.configure_client do |config|
-    config.redis = { :url => 'redis://gong023.com:6379' , :namespace => 'resque'}
-  end
+#  Sidekiq.configure_client do |config|
+#    config.redis = { :url => 'redis://gong023.com:6379' , :namespace => 'resque'}
+#  end
 end
