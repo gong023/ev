@@ -2,8 +2,8 @@ class WorkersController < ApplicationController
   before_filter :check_session
 
   def create
-#    TrialWorker.perform_async(params[:id])
-    Worker.create({ evernote_uid: params[:id], from: 'trial' })
+    TrialWorker.perform_async(params[:id])
+#    Worker.create({ evernote_uid: params[:id], from: 'trial' })
   end
 
   private
