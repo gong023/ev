@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         create_hatena result
       when 'github'
         create_github result
-      when 'github'
+      when 'moves'
         create_moves result
     end
 
