@@ -3,7 +3,7 @@ class WorkersController < ApplicationController
 
   def create
     TrialWorker.perform_async(params[:id])
-#    Worker.create({ evernote_uid: params[:id], from: 'trial' })
+    Worker.create({ evernote_uid: params[:id], from: 'trial' })
   end
 
   private
