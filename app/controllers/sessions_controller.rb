@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
         create_hatena result
       when 'github'
         create_github result
+      when 'github'
+        create_moves result
     end
 
     redirect_to controller: 'users', action: 'edit', id: session[:uid]
@@ -44,6 +46,13 @@ class SessionsController < ApplicationController
     credentials = result[:credentials]
     if LifelogGithub.find_by_evernote_uid(session[:uid]).blank?
       LifelogGithub.create(evernote_uid: session[:uid], access_secret: credentials[:token])
+    end
+  end
+
+  def create_moves result
+    credentials = result[:credentials]
+    if LifelogMoves.find_by_evernote_uid(session[:uid]).blank?
+      LifelogMoves.create(evernote_uid: session[:uid], access_secret: credentials[:token])
     end
   end
 
