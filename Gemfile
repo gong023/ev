@@ -29,7 +29,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-evernote'
 gem 'omniauth-hatena'
 gem 'omniauth-github'
-gem 'omniauth-moves'
+gem 'omniauth-moves', git: 'https://github.com/jakelevine/omniauth-moves.git'
 
 gem 'haml'
 gem 'haml-rails'
