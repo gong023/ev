@@ -50,3 +50,5 @@ end
 gem 'evernote_oauth'
 
 gem 'agent_orange'
+
+gem "twitter-bootstrap-rails"
