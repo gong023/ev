@@ -1,4 +1,15 @@
-%h1 Welcome#index
-%p Find me in app/views/welcome/index.html.haml
-%p
-  = link_to "Sign in with Evernote", "/auth/evernote"
+#myCarousel.carousel.slide{"data-ride" => "carousel"}
+  .carousel-inner
+    .item.active
+      .container
+        .carousel-caption
+          %h1 Another example headline.
+          %p description
+          %p
+            %a.btn.btn-lg.btn-primary{href: "/auth/evernote", role: "button"} Sign in Evernote
+.container.marketing
+  .row
+    .col-lg-4
+      %img.img-circle{alt: "140x140", "data-src" => "holder.js/140x140", src: "data:image/svg+xml;", style: "width: 140px; height: 140px;"}/
+      %h2 Heading
+      %p desc

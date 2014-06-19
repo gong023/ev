@@ -1,0 +1,29 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
+    %meta{content: "", name: "description"}
+    %title Carousel Template for Bootstrap
+    %link{href: "../../dist/css/bootstrap.min.css", rel: "stylesheet"}
+    %link{href: "carousel.css", rel: "stylesheet"}
+  %body
+    #myCarousel.carousel.slide{"data-ride" => "carousel"}
+      .carousel-inner
+        .item.active
+          .container
+            .carousel-caption
+              %h1 Another example headline.
+              %p description
+              %p
+                %a.btn.btn-lg.btn-primary{href: "#", role: "button"} Learn more
+    .container.marketing
+      .row
+        .col-lg-4
+          %img.img-circle{alt: "140x140", "data-src" => "holder.js/140x140", src: "data:image/svg+xml;", style: "width: 140px; height: 140px;"}/
+          %h2 Heading
+          %p desc
+    %script{src: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"}
+    %script{src: "../../dist/js/bootstrap.min.js"}
+    %script{src: "../../assets/js/docs.min.js"}
