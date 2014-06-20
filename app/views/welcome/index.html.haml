@@ -3,13 +3,35 @@
     .item.active
       .container
         .carousel-caption
-          %h1 Another example headline.
-          %p description
+          %h1 Everlog
+          %p ネット上のアクティビティを、毎日自動でEvernoteに保存します。
           %p
-            %a.btn.btn-lg.btn-primary{href: "/auth/evernote", role: "button"} Sign in Evernote
+            %a.btn.btn-lg.btn-primary{ href: "/auth/evernote", role: "button" } Evernoteにサインインして使う
 .container.marketing
   .row
+    %h1{ style: 'text-align: center' } 連携サービス
     .col-lg-4
-      %img.img-circle{alt: "140x140", "data-src" => "holder.js/140x140", src: "data:image/svg+xml;", style: "width: 140px; height: 140px;"}/
-      %h2 Heading
-      %p desc
+      = image_tag('twitter.png', size: '140x140')
+      %h2 twitter
+      %p 毎日のツイートを記録
+    .col-lg-4
+      = image_tag('github.png', size: '140x140')
+      %h2 github
+      %p 毎日のコミットを記録
+    .col-lg-4
+      = image_tag('moves.png', size: '140x140')
+      %h2 moves
+      %p 毎日の移動履歴と、消費カロリーの合計などを記録
+    .col-lg-4
+      = image_tag('hatena.png', size: '140x140')
+      %h2 hatenaBookmark
+      %p 毎日のブックマークを記録
+    .col-lg-4
+      = image_tag('animetick.png', size: '140x140')
+      %h2 animetick
+      %p （そのうち対応できるかも）毎日の消費チケットを記録
+  %hr.featurette-divider
+    %h1{ style: 'text-align: center' } Evernoteへの保存イメージ
+    .row
+      .col-md-12
+        = image_tag('twitter.png', size: '1000x1000')
