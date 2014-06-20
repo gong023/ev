@@ -145,3 +145,10 @@ body {
     margin-top: 120px;
   }
 }
+
+.sample-output-line {
+  padding: 5px;
+}
+.sample-output-dummyline {
+  padding: 10px;
+}
