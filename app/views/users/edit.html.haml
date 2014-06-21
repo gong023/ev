@@ -1,34 +1,54 @@
-%h1 Users#setting
-- if @twitter.blank?
-  = link_to 'Twitter認証', '/auth/twitter'
-- else
-  %p twitter認証済み
-
-- if @hatena.blank?
-  = link_to 'HatenaBookmark認証', '/auth/hatena'
-- else
-  %p HatenaBookmark認証済み
-
-- if @github.blank?
-  = link_to 'Github認証', '/auth/github'
-- else
-  %p Github認証済み
-
-- if @moves.blank?
-  - if @ua.is_mobile?
-    = link_to 'moves認証', '/auth/moves'
+.col-xs-offset-3
+  %h3 サービス連携
+.col-xs-12.sample-output-dummyline
+.col-xs-6
+  %span.setting-service twitter
+.col-xs-6
+  - if @twitter.blank?
+    = link_to '認証', '/auth/twitter'
   - else
-    %p movesの認証はスマートフォンからお願いします
-- else
-  %p moves認証済み
+    %span.authorized 認証済み
+.col-xs-12.sample-output-dummyline
+.col-xs-6
+  %span.setting-service hatenaBookmark
+.col-xs-6
+  - if @hatena.blank?
+    = link_to '認証', '/auth/hatena', class: 'btn-link authorize'
+  - else
+    %span.authorized 認証済み
+.col-xs-12.sample-output-dummyline
+.col-xs-6
+  %span.setting-service github
+.col-xs-6
+  - if @github.blank?
+    = link_to '認証', '/auth/github', class: 'btn-link authorize'
+  - else
+    %span.authorized 認証済み
+.col-xs-12.sample-output-dummyline
+.col-xs-6
+  %span.setting-service moves
+.col-xs-6
+  - if @moves.blank?
+    - if @ua.is_mobile?
+      = link_to '認証', '/auth/moves', class: 'btn-link authorize'
+    - else
+      %span movesの認証はスマートフォンからお願いします。
+  - else
+    %span.authorized moves認証済み
 
-= button_to('お試し送信', { controller: 'workers', action: 'create', id: session[:uid] })
+.col-xs-12.sample-output-dummyline
+.col-xs-offset-3
+  %h3 保存設定
+.col-xs-offset-6.col-xs-6
+  = button_to('お試し送信', { controller: 'workers', action: 'create', id: session[:uid] }, class: 'btn btn-default')
 
-- if @user.status == 1
-  = form_tag({ controller: 'users', action: 'update' }, method: 'put')
-  = hidden_field_tag(:status, 2)
-  = submit_tag('登録して毎日届かせる')
-- else
-  = form_tag({ controller: 'users', action: 'update' }, method: 'put')
-  = hidden_field_tag(:status, 1)
-  = submit_tag('登録解除する')
+  .col-xs-12.sample-output-dummyline
+
+  - if @user.status == 1
+    = form_tag({ controller: 'users', action: 'update' }, method: 'put')
+    = hidden_field_tag(:status, 2)
+    = submit_tag('登録', class: 'btn btn-primary')
+  - else
+    = form_tag({ controller: 'users', action: 'update' }, method: 'put')
+    = hidden_field_tag(:status, 1)
+    = submit_tag('登録解除する')

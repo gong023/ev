@@ -1,0 +1,23 @@
+span.setting-service {
+  display: block;
+  text-align: right;
+}
+
+a.authorize {
+  padding: 10px 5px;
+}
+
+span.authorized {
+  color: #468847;
+  background-color: #DFF0D8;
+  font-size: 14px;
+  padding: 10px 5px;
+  font-weight: 700;
+  text-align: center;
+  border: 1px solid #D6E9C6;
+  border-radius: 4px;
+}
+
+span.authorized:before {
+  content: '✔ ';
+}
