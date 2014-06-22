@@ -68,6 +68,7 @@ class Queue
         begin
           everlog.push(:moves, {access_secret: moves.access_secret})
         rescue Everlog::InfrastructureMovesError => e
+          moves.update(status: 2)
           LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'moves api error'})
         end
       end

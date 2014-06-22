@@ -36,6 +36,10 @@
       = link_to '認証', '/auth/moves', class: 'btn-link authorize'
     - else
       %span movesの認証はスマートフォンからお願いします。
+  - elsif @moves.status == 2
+    %span.authorize_failed エラー
+    - if @ua.is_mobile?
+      = link_to '認証', '/auth/moves', class: 'btn-link authorize'
   - else
     %span.authorized moves認証済み
 

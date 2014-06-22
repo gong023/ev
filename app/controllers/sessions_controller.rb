@@ -54,8 +54,11 @@ class SessionsController < ApplicationController
 
   def create_moves result
     credentials = result[:credentials]
-    if LifelogMoves.find_by_evernote_uid(session[:uid]).blank?
+    lifelog_moves = LifelogMoves.find_by_evernote_uid(session[:uid])
+    if lifelog_moves.blank?
       LifelogMoves.create(evernote_uid: session[:uid], access_secret: credentials[:token])
+    elsif lifelog_moves.status == 2
+      lifelog_moves.update(access_secret: credentials[:token], status: 1)
     end
   end
 
