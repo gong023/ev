@@ -37,6 +37,7 @@ class Queue
             access_secret:   hatena.access_secret
           })
         rescue Everlog::InfrastructureHatenarError => e
+          LifelogHatena.where(evernote_uid: uid).first.update_attribute(:status, 2)
           LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'hatena api error'})
         end
       end

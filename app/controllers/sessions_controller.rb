@@ -37,8 +37,11 @@ class SessionsController < ApplicationController
 
   def create_hatena result
     credentials = result[:credentials]
-    if LifelogHatena.find_by_evernote_uid(session[:uid]).blank?
+    lifelog_hatena = LifelogHatena.find_by_evernote_uid(session[:uid])
+    if lifelog_hatena.blank?
       LifelogHatena.create(evernote_uid: session[:uid], access_token: credentials[:token], access_secret: credentials[:secret])
+    elsif lifelog_hatena.status == 2
+      lifelog_hatena.update(access_token: credentials[:token], access_secret: credentials[:secret], status: 1)
     end
   end
 

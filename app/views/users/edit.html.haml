@@ -14,6 +14,9 @@
 .col-xs-6
   - if @hatena.blank?
     = link_to '認証', '/auth/hatena', class: 'btn-link authorize'
+  - elsif @hatena.status == 2
+    %span.authorize_failed エラー
+    = link_to '再認証', '/auth/hatena', class: 'btn-link authorize'
   - else
     %span.authorized 認証済み
 .col-xs-12.sample-output-dummyline
