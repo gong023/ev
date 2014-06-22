@@ -45,10 +45,11 @@
   .col-xs-12.sample-output-dummyline
 
   - if @user.status == 1
-    = form_tag({ controller: 'users', action: 'update' }, method: 'put')
-    = hidden_field_tag(:status, 2)
-    = submit_tag('登録', class: 'btn btn-primary')
+    = form_for(@user, url: { controller: 'users', action: 'update' }, method: 'put') do |f|
+      = hidden_field_tag(:status, 2)
+      = f.submit('登録', class: 'btn btn-primary')
+    %p 登録すると毎日午前0時にevernoteにポストします
   - else
-    = form_tag({ controller: 'users', action: 'update' }, method: 'put')
-    = hidden_field_tag(:status, 1)
-    = submit_tag('登録解除する')
+    = form_for(@user, url: { controller: 'users', action: 'update' }, method: 'put') do |f|
+      = hidden_field_tag(:status, 1)
+      = f.submit_tag('登録解除する', class: 'btn btn-primary')
