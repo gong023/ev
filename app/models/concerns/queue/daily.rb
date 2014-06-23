@@ -73,6 +73,8 @@ class Queue
         end
       end
 
+      everlog.footer("設定変更は <a href='http://everlog.herokuapp.com/users/#{uid}/edit>こちら</a>' から。movesの機能はアプリが審査中なのでまだ動きません。")
+
       begin
         everlog.publish(title, evernote.access_secret, 'production')
       rescue Everlog::InfrastructureEvernoteError => e
