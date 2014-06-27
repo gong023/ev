@@ -12,7 +12,31 @@ namespace :detect do
         c.access_token_secret = t.access_secret
       end
 
-      p client.user.screen_name
+      p "#{t.evernote_uid} / #{client.user.screen_name}"
+    end
+  end
+
+  task github: :environment do
+    p '====github===='
+    require 'octokit'
+    LifelogGithub.all.each do |g|
+      client = Octokit::Client.new(access_token: g.access_secret)
+      p "#{g.evernote_uid} / #{client.user.name}"
+    end
+  end
+
+  task hatena: environment do
+    p '====hatena===='
+    require 'hatena-bookmark'
+    LifelogHatena.all.each do |h|
+      client ||= ::Hatena::Bookmark.new(
+        consumer_key:    '0/xho8PM2xdqdg==',
+        consumer_secret: 'AnK35xT6qTdue1S3sEVrVRgfQ9w=',
+        request_token:   h.access_token,
+        request_secret:  h.access_secret
+      )
+
+      p "#{h.evernote_ui} / #{client.feed['feed']['title']}"
     end
   end
 end
