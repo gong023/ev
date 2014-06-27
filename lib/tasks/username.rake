@@ -25,7 +25,7 @@ namespace :detect do
     end
   end
 
-  task hatena: environment do
+  task hatena: :environment do
     p '====hatena===='
     require 'hatena-bookmark'
     LifelogHatena.all.each do |h|
@@ -36,7 +36,7 @@ namespace :detect do
         request_secret:  h.access_secret
       )
 
-      p "#{h.evernote_ui} / #{client.feed['feed']['title']}"
+      p "#{h.evernote_uid} / #{client.feed['feed']['title']}"
     end
   end
 end
