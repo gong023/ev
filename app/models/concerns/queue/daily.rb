@@ -8,7 +8,7 @@ class Queue
       everlog = Everlog::Daily.new
 
       begin
-        everlog.push(:weather, { access_token: '41c6ad6bd5824c51' })
+        everlog.push(:weather, { access_token: ENV['EVERLOG_WUNDERGROUND_TOKEN'] })
       rescue InfrastructureWeatherError => e
         LifelogLogger.create({evernote_uid: uid, text: e.message, occured: 'weather api error'})
       end
@@ -17,8 +17,8 @@ class Queue
       unless twitter.blank?
         begin
           everlog.push(:twitter, {
-            consumer_key:    'HOsdFThXCsI7EjVC6gRzgWDgd',
-            consumer_secret: 'fLOy5pLsIIzE40A7lS59N0fM7L7laJtmSXiJYW2ky4MN1AoJlE',
+            consumer_key:    ENV['EVERLOG_TWITTER_CONSUMERKEY'],
+            consumer_secret: ENV['EVERLOG_TWITTER_CONSUMERSEC'],
             access_token:    twitter.access_token,
             access_secret:   twitter.access_secret
           })
@@ -31,8 +31,8 @@ class Queue
       unless hatena.blank?
         begin
           everlog.push(:hatena, {
-            consumer_key:    '0/xho8PM2xdqdg==',
-            consumer_secret: 'AnK35xT6qTdue1S3sEVrVRgfQ9w=',
+            consumer_key:    ENV['EVERLOG_HATENA_CONSUMERKEY'],
+            consumer_secret: ENV['EVERLOG_HATENA_CONSUMERSEC'],
             access_token:    hatena.access_token,
             access_secret:   hatena.access_secret
           })
